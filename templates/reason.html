@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Return Reason</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0f1a, #1a237e, #2563eb);
+            color: white;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(90deg, #1a237e, #2563eb, #4fc3f7);
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+        .header .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Form Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        /* Glassmorphic Form Card */
+        .form-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0px 8px 32px rgba(255, 255, 255, 0.2);
+            max-width: 400px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .form-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 10px 40px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #4fc3f7, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Input Fields */
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            display: block;
+            margin-top: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        select option {
+            color: black;
+            background: white;
+        }
+        select:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Neon Button */
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #2563eb, #4fc3f7, #a1eafb);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 10px rgba(79, 195, 247, 0.5);
+        }
+
+        button i {
+            margin-left: 8px;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #1d4ed8, #2563eb, #4fc3f7);
+            transform: scale(1.05);
+            box-shadow: 0px 0px 20px rgba(79, 195, 247, 0.8);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="header">
+        <div class="logo"><i class="fas fa-box"></i> Return Management</div>
+
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="container">
+        <div class="form-card">
+            <h1><i class="fas fa-exchange-alt"></i> Select Return Reason</h1>
+            {% if warning_message %}
+            <p class="warning-message" style="color: #ff4c4c; font-weight: bold;">{{ warning_message }}</p>
+            {% endif %}
+            <form action="/reason_selection/" method="post">
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+                <input type="hidden" name="product_id" value="{{ product_id }}">
+                <label for="reason">Reason for Return:</label>
+                <select name="reason" required>
+                    <option value="Size or Fit Issue">Size or Fit Issue</option>
+                    <option value="Color Change">Color Change</option>
+                    <option value="Change of Mind">Change of Mind</option>
+                    <option value="Physical Damage">Physical Damage</option>
+                    <option value="Unusable">Unusable</option>
+                    <option value="Missing Part">Missing Part</option>
+                </select>
+                <button type="submit">Next <i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

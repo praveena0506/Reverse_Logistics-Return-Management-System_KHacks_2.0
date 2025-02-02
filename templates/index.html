@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Return Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(90deg, #1a237e, #2563eb, #4fc3f7);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Title Section */
+        .title {
+            font-size: 50px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-top: 50px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* About Section - Initially Hidden */
+        .about {
+            display: none;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 800px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .about p {
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px auto;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 150px;
+            transition: 0.3s;
+        }
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .feature i {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* Form Section */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0px 8px 32px rgba(255, 255, 255, 0.1);
+            max-width: 400px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .form-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 10px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        button {
+            background: linear-gradient(90deg, #2563eb, #4fc3f7);
+            transition: 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        function toggleAbout() {
+            let aboutSection = document.getElementById("about");
+            if (aboutSection.style.display === "none" || aboutSection.style.display === "") {
+                aboutSection.style.display = "block";
+                setTimeout(() => { aboutSection.style.opacity = "1"; }, 50);
+            } else {
+                aboutSection.style.opacity = "0";
+                setTimeout(() => { aboutSection.style.display = "none"; }, 500);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="nav-links">
+            <a onclick="toggleAbout()">About</a>
+            <a href="/user_login">User Login</a>
+            <a href="/delivery_agent_login">Delivery Agent Login</a>
+            <a href="/signup">Signup</a>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="title">Automated Return Management System</div>
+
+    <br><br><br>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>Our E-commerce Return Management System makes product returns simple, fast, and secure. Customers can easily initiate returns, while businesses benefit from fraud prevention, smart verification, and optimized logistics. With real-time tracking, trust scoring, and seamless processing, we ensure a transparent and hassle-free return experience for everyone.</p>
+    </section>
+
+    <section id="features" class="features">
+        <div class="feature">
+            <i class="fas fa-users"></i>
+            <p>Customers</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-box"></i>
+            <p>Product Returns</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-shield-alt"></i>
+            <p>Secure Processing</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-truck"></i>
+            <p>Fast Refunds</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="form-card">
+            <h1><i class="fas fa-box-open"></i> Customer Return Portal</h1>
+            <p class="subtitle">Enter your details to proceed with a return</p>
+            <form action="/check_customer/" method="post">
+                <div class="input-group">
+                    <label for="user_id">Customer ID</label>
+                    <input type="text" name="user_id" placeholder="Enter Customer ID" required>
+                </div>
+                <div class="input-group">
+                    <label for="product_id">Product ID</label>
+                    <input type="number" name="product_id" placeholder="Enter Product ID" required>
+                </div>
+                <button type="submit">Submit <i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

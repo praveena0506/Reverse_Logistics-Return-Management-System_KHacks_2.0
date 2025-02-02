@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Upload</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+        }
+        .container {
+            text-align: center;
+        }
+        .form-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 35px;
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0px 6px 25px rgba(255, 255, 255, 0.25);
+            max-width: 450px;
+            margin: auto;
+            transition: 0.3s ease-in-out;
+        }
+        .form-card:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            font-weight: 600;
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #64b5f6;
+        }
+        label {
+            font-size: 15px;
+            font-weight: 400;
+            display: block;
+            margin-top: 12px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-top: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        input::placeholder {
+            color: #ddd;
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, #64b5f6, #42a5f5);
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 15px rgba(100, 181, 246, 0.4);
+        }
+        button:hover {
+            background: linear-gradient(90deg, #42a5f5, #1e88e5);
+            transform: scale(1.05);
+        }
+        p {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <h1>Upload Barcode Image</h1>
+            <form action="/process_barcode/" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+                <input type="hidden" name="product_id" value="{{ product_id }}">
+                <label for="barcode_file">Barcode Image:</label>
+                <input type="file" name="barcode_file" accept="image/*" required>
+                <label for="location">Location:</label>
+                <input type="text" name="location" placeholder="Enter your location" required>
+                <button type="submit">Submit</button>
+            </form>
+            <p>{{ message }}</p>
+        </div>
+    </div>
+</body>
+</html>
